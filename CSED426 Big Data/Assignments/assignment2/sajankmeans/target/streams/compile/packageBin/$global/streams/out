@@ -1,0 +1,31 @@
+[0m[[0minfo[0m] [0mPackaging /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/sajankmeans_2.11-0.1.jar ...[0m
+[0m[[0mdebug[0m] [0mInput file mappings:[0m
+[0m[[0mdebug[0m] [0m	Kmeans$$anonfun$computeCentroids$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans$$anonfun$computeCentroids$1.class[0m
+[0m[[0mdebug[0m] [0m	Kmeans$$anonfun$groupClusters$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans$$anonfun$groupClusters$1.class[0m
+[0m[[0mdebug[0m] [0m	Kmeans$$anonfun$main$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans$$anonfun$main$1.class[0m
+[0m[[0mdebug[0m] [0m	Kmeans$$anonfun$2.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans$$anonfun$2.class[0m
+[0m[[0mdebug[0m] [0m	Kmeans$$anonfun$groupClusters$1$$anonfun$apply$2.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans$$anonfun$groupClusters$1$$anonfun$apply$2.class[0m
+[0m[[0mdebug[0m] [0m	Kmeans$$anonfun$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans$$anonfun$1.class[0m
+[0m[[0mdebug[0m] [0m	Kmeans$$anonfun$main$2$$anonfun$apply$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans$$anonfun$main$2$$anonfun$apply$1.class[0m
+[0m[[0mdebug[0m] [0m	Kmeans$$anonfun$euclideandist$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans$$anonfun$euclideandist$1.class[0m
+[0m[[0mdebug[0m] [0m	Kmeans.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans.class[0m
+[0m[[0mdebug[0m] [0m	Kmeans$$anonfun$main$2.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans$$anonfun$main$2.class[0m
+[0m[[0mdebug[0m] [0m	Kmeans$$anonfun$1$$anonfun$apply$4.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans$$anonfun$1$$anonfun$apply$4.class[0m
+[0m[[0mdebug[0m] [0m	Kmeans$.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans$.class[0m
+[0m[[0mdebug[0m] [0m	Kmeans$$anonfun$groupClusters$1$$anonfun$apply$3.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans$$anonfun$groupClusters$1$$anonfun$apply$3.class[0m
+[0m[[0mdebug[0m] [0m	Kmeans$$anonfun$3.class[0m
+[0m[[0mdebug[0m] [0m	  /home/sajan/IdeaProjects/sajankmeans/target/scala-2.11/classes/Kmeans$$anonfun$3.class[0m
+[0m[[0minfo[0m] [0mDone packaging.[0m
