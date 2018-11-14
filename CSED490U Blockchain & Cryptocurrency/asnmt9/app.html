@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../bower_components/web3/dist/web3.js"></script>
+    <title>Simple Wallet</title>
+</head>
+<body>
+<h2>web3.js Transaction 및 Filter</h2>
+<div name="Balance">
+    <h3>Account Information</h3>
+    <p>
+        <label for="address">Account Address</label>
+        <input id="address" value="" size="50" " readonly/>
+    </p>
+    <p>
+        <label for="balanceAmount">Balance Amount (Ether)</label>
+        <input id="balanceAmount" value="" size="40" readonly/>
+    </p>
+</div>
+<div name="Transaction">
+    <h3>Transfer Ether</h3>
+    <p>
+        <label for="toAddress">Send To</label>
+        <input id="toAddress" placeholder="Address to Send" size="40"/>
+    </p>
+    <p>
+        <label for="sendAmount">Amount to Send</label>
+        <input id="sendAmount" placeholder="Send amount in Ether" size="20"/>
+    </p>
+    <p>
+        <button id="btnSend">Send</button>
+    </p>
+</div>
+<div name="EventFilter">
+    <h3>Event Filter</h3>
+    <p>
+        <textarea id="eventLog" rows="10" cols="60" readonly></textarea>
+    </p>
+</div>
+<script type="text/javascript">
+var Web3 = require('web3');
+var web3 = new Web3();
+web3.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'));
+$(document).ready(function() {
+    initPage();
+    $('#btnSend').click(function(){
+        var toAddress = $('#toAddress').val();
+        var sendAmount = web3.toWei($('#sendAmount').val(), 'ether');
+        var txHash = web3.eth.sendTransaction({
+            from: web3.eth.accounts[0],
+            to: toAddress,
+            value: sendAmount
+        });
+        console.log(txHash);
+    });
+    var blockFilter = web3.eth.filter('latest');
+    blockFilter.watch(function(error, blockHash) {
+        var block = web3.eth.getBlock(blockHash);
+        appendLog('New Block('+block.number+')['+block.hash+'] / ' + block.transactions.length + ' TXs');
+    });
+});
+function initPage() {
+    updateBalance();
+    web3.personal.unlockAccount(web3.eth.accounts[0],'123456789');
+}
+function appendLog(log) {
+    $('#eventLog').append(log).append('\n');
+    $('#eventLog').scrollTop($('#eventLog')[0].scrollHeight -  $('#eventLog').height());
+}
+function updateBalance() {
+    var address = web3.eth.accounts[0];
+    var balance = web3.fromWei(web3.eth.getBalance(address), 'ether');
+    $('#address').val(address);
+    $('#balanceAmount').val(balance);
+}
+</script>
+</body>
+</html>

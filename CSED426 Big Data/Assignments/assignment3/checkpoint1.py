@@ -63,13 +63,10 @@ df_test = df_test.drop(['customdate','Address'], axis=1)
 
 df_train['rot45X'] = 0.707 * df_train['X'] + 0.707 * df_train['Y']
 df_train['rot45Y'] = 0.707 * df_train['Y'] - 0.707 * df_train['X']
-
 df_train['rot30X'] = (1.732/2) * df_train['X'] + (1.0/2) * df_train['Y']
 df_train['rot30Y'] = (1.732/2) * df_train['Y'] - (1.0/2) * df_train['X']
-
 df_train['rot60X'] = (1.0/2) * df_train['X'] + (1.732/2) * df_train['Y']
 df_train['rot60Y'] = (1.0/2) * df_train['Y'] - (1.732/2) * df_train['X']
-
 df_train['radial_r'] = np.sqrt(np.power(df_train['Y'],2) + np.power(df_train['X'],2))
 
 #list of attribute columns, we are going to use

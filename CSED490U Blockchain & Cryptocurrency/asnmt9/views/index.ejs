@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Ethereum Wallet</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Sajan's Ethereum Wallet</h1>
+      <fieldset width="80%">
+      
+      <h3>Your List of Accounts</h3>
+      <!-- Table to show information about accounts and balances -->
+      <table>
+      <tr>
+        <th>Accounts</th><th>Balance</th>
+      </tr>
+      <% var sum = 0 %>
+      <% for (var i = 0; i < balArray.length; i++) { %>
+        <% sum += parseFloat(balArray[i]) %>
+      <tr>
+        <td><%= accounts[i] %> </td>
+        <td><%= balArray[i] %> ETH</td>
+      </tr>
+      <% } %>
+      <tr>
+        <td>Total</td>
+        <td><%= sum %> ETH </td>
+      </tr>
+      </table>
+      <br/>
+      <hr/>
+      <!-- form to select sender, recipient and value -->
+      <h3>Send Ether?</h3>
+      <form action="/processRequest" method="POST">
+        <label for="transmitter">Transmitter</label>
+        <select name="transmitter" id="transmitter">
+          <% for (var i=0; i < accounts.length; i++) { %>
+          <option>
+            <%= accounts[i] %>
+          </option>
+          <% } %>
+        </select>
+        <br/>
+        <br/>
+        <label for="recipient">Recipient</label>
+        <input type="text" id="recipient" name="recipient" placeholder="Address to Send" size="80"/>
+        <br/>
+        <br/>
+        <label for="sendAmount">Value</label>
+        <input type="text" id="sendAmount" name="sendAmount" placeholder="Value to send" size="80"/> ETH
+        <br/>
+        <br/>
+        <label for="pwd">Password</label>
+        <input type="password" id="pwd" name="pwd" />
+        <input type="submit" value="Submit" />
+        <br/>
+        <br/>
+        <hr/>
+        <br/>
+        <input type="submit" id="vTxn" name="vTxn" formaction="/viewTxn" value="View Your Transactions" />
+        <input type="submit" id="blockDetails" name="blockDetails" formaction="/searchBlock" value="Search By Blocks" />
+      </form>
+      </fieldset>
+    </div>
+  </body>
+</html>

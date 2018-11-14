@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Ethereum Wallet</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Sajan's Ethereum Wallet</h1>
+      <fieldset width="80%">
+      <h4>Your List of Transaction</h4>
+      <!-- Table to show information about accounts and balances -->
+      <table>
+      <tr>
+        <th>Transaction Hash</th>
+      </tr>
+      <% for (var i = 0; i < txnList.length; i++) { %>
+      <tr>
+        <td><%= txnList[i] %> </td>
+      </tr>
+      <% } %>
+      </table>
+      <br/>
+      <hr/>
+      <!-- form to select sender, recipient and value -->
+      <form action="/viewTxnDetails" method="POST">
+        <label for="selectedTxn">Select Transaction</label>
+        <select name="selectedTxn" id="selectedTxn">
+          <% for (var i=0; i < txnList.length; i++) { %>
+          <option>
+            <%= txnList[i] %>
+          </option>
+          <% } %>
+        </select>
+        <input type="submit" value="View Transaction Details" />
+      </form>
+      </fieldset>
+    </div>
+  </body>
+</html>
