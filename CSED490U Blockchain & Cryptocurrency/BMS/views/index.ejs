@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> DPNM Blockchain Monitoring System </title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<!-- Additional Styling Defined -->
+	<style>
+	.jumbotron
+	{
+		background-image: linear-gradient(90deg, rgb(0, 4, 40) 0%, rgb(0, 52, 109) 100%);
+	}
+	.nav-bg-gradient {
+		background-image: linear-gradient(90deg, rgb(0, 4, 40) 0%, rgb(0, 52, 109) 100%);
+	}
+	.cliente {
+		margin-top:10px;
+		border: #cdcdcd medium solid;
+		border-radius: 10px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		font-family: Montserrat, sans-serif;
+		font-weight: 400;
+		font-size: 1.1rem;
+		text-transform: uppercase;
+		font-style: normal;
+		justify-content: center;
+		-ms-flex-pack:center;
+		padding: 1rem 1rem;
+		box-sizing: border-box;
+	}
+	</style>
+</head>
+<body>
+	<!-- Section Defined for Top Navigation Bar-->
+	<section height="4.5rem">
+	<div class="container-fluid">
+	<nav class="navbar navbar-expand-sm nav-bg-gradient">
+  		<ul class="navbar-nav mr-auto">
+    		<li class="nav-item">
+    			<a class="nav-link text-white" href="http://dpnm.postech.ac.kr/">DPNM</a>
+    		</li>
+    		<li class="nav-item">
+    			<a class="nav-link text-white" href="#">Link 2</a>
+    		</li>
+    		<li class="nav-item">
+    			<a class="nav-link text-white" href="#">Link 3</a>
+    		</li>
+    	</ul>
+    	<ul class="navbar-nav">
+    		<li class="nav-item"><button type="button" class="btn btn-success mr-1">Login</button></li>
+    		<span/>
+    		<li class="nav-item"><button type="button" class="btn btn-primary mr-1">Sign Up</button></li>
+  		</ul>
+	</nav>
+	</div>
+	</section>
+	<!-- End of Section Defined for Top Navigation Bar-->
+
+	<!-- Section for Banner -->
+	<section height="20rem">
+	<div class="container-fluid">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="text-white display-3"><center>Blockchain Monitoring System</center></div>
+			<br/>
+			<div class="input-group justify-content-center">
+				<input type="text" class="form-control col-sm-6" placeholder="Search for blocks, transactions, addresses" />
+				<div class="input-group-append">
+					<button type="button" class="btn btn-secondary float-left">
+						<i class="fas fa-search"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+	<br/>
+	<section height="20rem">
+	<div class="container">
+  		<ul class="nav nav-tabs nav-justified">
+    		<li class="nav-item">
+    			<a class="nav-link text-body active" data-toggle="tab" href="#btc" data-target="#btc, #btc-pills-blocks, #btc-pills-txn"><i class="fab fa-bitcoin"></i> Bitcoin</a>
+    		</li>
+    		<li class="nav-item">
+    			<a class="nav-link text-body" data-toggle="tab" href="#eth" data-target="#eth, #eth-pills-blocks, #eth-pills-txn"><i class="fab fa-ethereum"></i> Ethereum</a>
+    		</li>
+    	</ul>
+	</div>
+	</section>
+	<!-- End of Section for Banner -->
+
+	<section height="60rem">
+	<div class="container tab-content">
+		<!-- Start of Bitcoin Information -->
+		<div id="btc" class="tab-pane fade show active">
+			<br/>
+			<p>Bitcoin Information Here</p>
+			<!-- Showing Bitcoin 4 X 2 information -->
+			<div class="row">
+  				<div class="col-md-2 cliente">
+  					<p class="text-center">price</p>
+  				</div>
+  				<div class="col-md-2 offset-md-1 cliente">
+  					<p class="text-center">hash rate</p>
+  				</div>
+  				<div class="col-md-2 offset-md-1 cliente">
+  					<p class="text-center">difficulty</p>
+  				</div>
+  				<div class="col-md-2 offset-md-1 cliente">
+  					<p class="text-center">tx per day</p>
+  				</div>
+			</div>
+			<br/>
+			<div class="row">
+  				<div class="col-md-2 cliente">
+  					<p class="text-center">average value</p>
+  				</div>
+  				<div class="col-md-2 offset-md-1 cliente">
+  					<p class="text-center">average fee</p>
+  				</div>
+  				<div class="col-md-2 offset-md-1 cliente">
+  					<p class="text-center">unconfirmed</p>
+  				</div>
+  				<div class="col-md-2 offset-md-1 cliente">
+  					<p class="text-center">mempool</p>
+  				</div>
+			</div>
+			<!-- End of Bitcoin 4 X 2 information -->
+
+			<!-- Start of Bitcoin Block and Transaction tabular data -->
+			<br/>
+			<hr/>
+			<ul class="nav nav-pills mb-3" id="btc-pills-tab" role="tablist">
+ 				 <li class="nav-item">
+    				<a class="nav-link active" id="btc-pills-blocks-tab" data-toggle="pill" href="#btc-pills-blocks" role="tab" aria-controls="btc-pills-blocks" aria-selected="true">Blocks</a>
+  				</li>
+  				<li class="nav-item">
+    				<a class="nav-link" id="btc-pills-txn-tab" data-toggle="pill" href="#btc-pills-txn" role="tab" aria-controls="btc-pill-txn" aria-selected="false">Transactions</a>
+  				</li>
+			</ul>
+			
+			<div class="tab-content" id="btc-pills-tabContent">
+				<div class="tab-pane fade show active" id="btc-pills-blocks" role="tabpanel" aria-labelledby="btc-pills-blocks-tab">
+					Bitcoin Block Data Here
+					<table class="table table-dark">
+						<thead>
+							<tr>
+								<th scope="col">Height</th>
+								<th scope="col">Age</th>
+								<th scope="col">Transactions</th>
+								<th scope="col">Miner</th>
+								<th scope="col">Size (KB)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a href="#">625435</a></td>
+								<td>Few Seconds Ago</td>
+								<td>123</a></td>
+								<td><a href="#">0xMinerID</a></td>
+								<td>1234567</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="tab-pane fade" id="btc-pills-txn" role="tabpanel" aria-labelledby="btc-pills-txn-tab">
+					Bitcoin Txn Data Here
+					<table class="table table-dark">
+						<thead>
+							<tr>
+								<th scope="col">Transaction Hash</th>
+								<th scope="col">Age</th>
+								<th scope="col">Amount (BTC)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a href="#">0xSomeTransactionHash</td>
+								<td>Few Seconds Ago</td>
+								<td>5 BTC</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- End of Bitcoin Tabular data for blocks and txn -->
+		<!-- End of Bitcoin Information -->
+
+		<!-- Start of Ethereum Information -->
+		</div>
+		<div id="eth" class="tab-pane fade in">
+			<br/>
+			<!-- Showing Ethereum 4 X 2 information -->
+			<p>Ethereum Information Here</p>
+			<div class="row">
+  				<div class="col-md-2 cliente">
+  					<p class="text-center">price</p>
+  				</div>
+  				<div class="col-md-2 offset-md-1 cliente">
+  					<p class="text-center">hash rate</p>
+  				</div>
+  				<div class="col-md-2 offset-md-1 cliente">
+  					<p class="text-center">difficulty</p>
+  				</div>
+  				<div class="col-md-2 offset-md-1 cliente">
+  					<p class="text-center">tx per day</p>
+  				</div>
+			</div>
+			<br/>
+			<div class="row">
+  				<div class="col-md-2 cliente">
+  					<p class="text-center">average value</p>
+  				</div>
+  				<div class="col-md-2 offset-md-1 cliente">
+  					<p class="text-center">average fee</p>
+  				</div>
+  				<div class="col-md-2 offset-md-1 cliente">
+  					<p class="text-center">unconfirmed</p>
+  				</div>
+  				<div class="col-md-2 offset-md-1 cliente">
+  					<p class="text-center">mempool</p>
+  				</div>
+			</div>
+			<!-- End of Ethereum 4 X 2 information -->
+
+			<!-- Start of Ethereum Block and Transaction tabular data -->
+			<br/>
+			<hr/>
+			<ul class="nav nav-pills mb-3" id="eth-pills-tab" role="tablist">
+ 				 <li class="nav-item">
+    				<a class="nav-link active" id="eth-pills-blocks-tab" data-toggle="pill" href="#eth-pills-blocks" role="tab" aria-controls="eth-pills-blocks" aria-selected="true">Blocks</a>
+  				</li>
+  				<li class="nav-item">
+    				<a class="nav-link" id="eth-pills-txn-tab" data-toggle="pill" href="#eth-pills-txn" role="tab" aria-controls="eth-pills-txn" aria-selected="false">Transactions</a>
+  				</li>
+			</ul>
+			<div class="tab-content" id="eth-pills-tabContent">
+				<div class="tab-pane fade show active" id="eth-pills-blocks" role="tabpanel" aria-labelledby="eth-pills-blocks-tab">
+					Eth Block Data Here
+					<table class="table table-dark">
+						<thead>
+							<tr>
+								<th scope="col">Height</th>
+								<th scope="col">Generated Timestamp</th>
+								<th scope="col">Transactions</th>
+								<th scope="col">Miner</th>
+								<th scope="col">Size (KB)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% for(var i=0; i < 3; i++) { %>
+							<tr>
+								<td><a href="#"><%= ethBlock[i].blocknumber %></a></td>
+								<td><%= ethBlock[i].ts %></td>
+								<td><%= ethBlock[i].tnum %></a></td>
+								<td><a href="#">0x<%= ethBlock[i].miner %></a></td>
+								<td><%= ethBlock[i].size %></td>
+							</tr>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+				<div class="tab-pane fade" id="eth-pills-txn" role="tabpanel" aria-labelledby="eth-pills-txn-tab">
+					Eth Txn Data Here
+					<table class="table table-dark">
+						<thead>
+							<tr>
+								<th scope="col">Transaction Hash</th>
+								<th scope="col">Age</th>
+								<th scope="col">Amount (ETH)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% for(var i=0; i < 3; i++) { %>
+							<tr>
+								<td><a href="#">0x<%= ethTransaction[i].txnhash %></td>
+								<td><%= ethTransaction[i].age %></td>
+								<td><%= ethTransaction[i].ethValue %></td>
+							</tr>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- End of Ethereum Block and Transaction tabular data -->
+		</div>
+		<!-- End of Ethereum Information -->
+	</div>
+	</section>
+	<br/>
+</body>
+</html>
