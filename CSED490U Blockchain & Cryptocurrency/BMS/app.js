@@ -99,6 +99,11 @@ app.get('/bms', function (req, res) {
 	
 })
 
+app.get('/eth/block', function(req, res) {
+	console.log("Rendering block information page");
+	res.render('block');
+})
+
 app.listen(3000, function () {
   console.log('Server running on port 3000!')
 })
