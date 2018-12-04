@@ -68,14 +68,16 @@
 		<div class="jumbotron jumbotron-fluid">
 			<div class="text-white display-3"><center>Blockchain Monitoring System</center></div>
 			<br/>
+			<form method="POST" action="search">
 			<div class="input-group justify-content-center">
-				<input type="text" class="form-control col-sm-6" placeholder="Search for blocks, transactions, addresses" />
+				<input type="text" class="form-control col-sm-6" placeholder="Search for blocks, transactions, addresses" name="searchval" />
 				<div class="input-group-append">
-					<button type="button" class="btn btn-secondary float-left">
+					<button type="submit" class="btn btn-secondary float-left">
 						<i class="fas fa-search"></i>
 					</button>
 				</div>
 			</div>
+			</form>
 		</div>
 	</div>
 	</section>
