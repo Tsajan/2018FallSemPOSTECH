@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> DPNM Blockchain Monitoring System </title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<!-- Additional Styling Defined -->
+	<style>
+	.jumbotron
+	{
+		background-image: linear-gradient(90deg, rgb(0, 4, 40) 0%, rgb(0, 52, 109) 100%);
+	}
+	.nav-bg-gradient {
+		background-image: linear-gradient(90deg, rgb(0, 4, 40) 0%, rgb(0, 52, 109) 100%);
+	}
+	.nav-bg-color {
+		background: #004a7c;
+	}
+	.cliente {
+		margin-top:10px;
+		border: #cdcdcd medium solid;
+		border-radius: 10px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		font-family: Montserrat, sans-serif;
+		font-weight: 400;
+		font-size: 1.1rem;
+		text-transform: uppercase;
+		font-style: normal;
+		justify-content: center;
+		-ms-flex-pack:center;
+		padding: 1rem 1rem;
+		box-sizing: border-box;
+	}
+	.rounded-left {
+  		border-top-left-radius: 1rem !important;
+  		border-bottom-left-radius: 1rem !important;
+	}
+	.rounded-right {
+  		border-top-right-radius: 1rem !important;
+  		border-bottom-right-radius: 1rem !important;
+	}
+	.myfontface {
+		font-family: Montserrat, sans-serif
+	}
+	</style>
+</head>
+<body>
+	<!-- Section for top navigation bar -->
+	<section height="4.5rem">
+		<div class="container-fluid">
+			<nav class="navbar navbar-expand-lg nav-bg-color">
+    			<ul class="navbar-nav">
+    				<li class="nav-item">
+    					<a class="nav-link py-4 px-4 text-uppercase text-white font-weight-bold h4" href="/bms">Blockchain</a>
+    				</li>
+      				<li class="nav-item">
+        				<a class="nav-link py-4 px-4 text-uppercase text-white h6" href="#">Link 1</a>
+      				</li>
+      				<li class="nav-item">
+        				<a class="nav-link py-4 px-4 text-uppercase text-white h6" href="#">Link 2</a>
+      				</li>
+      				<li class="nav-item">
+        				<a class="nav-link py-4 px-4 text-uppercase text-white h6" href="#">Link 3</a>
+      				</li>
+      				<li class="nav-item">
+        				<a class="nav-link py-4 px-4 text-uppercase text-white h6" href="#">Link 4</a>
+      				</li>
+    			</ul>
+    			<ul class="navbar-nav ml-auto">
+    				<li class="nav-item">
+    					<div class="input-group">
+    						<div class="input-group-append">
+    							<span class="input-group-text border-right-0 rounded-left"><i class="fas fa-search"></i></span>
+    						</div>
+    						<input class="form-control border-left-0 rounded-right" type="search" placeholder="Blocks, Hash, Transactions" aria-label="Search">
+    					</div>
+    				</li>
+    				<li class="nav-item">
+    					<button class="btn btn-success mx-4" type="submit">Search</button>
+    				</li>
+    			</ul>
+			</nav>
+		</div>
+	</section>
+
+	<section>
+		<div class="container">
+			<br/>
+			<p class="h3"> You searched for: <%= inputField %></p>
+			<br/>
+			<p class="h4"> Records Found </p>
+			<br/>
+			<i class="fab fa-btc"></i>   BTC   Block   <a href="/btc/block?number=<%= inputField %>">/btc/block/<%= inputField %></a>
+			<br/>
+			<i class="fab fa-ethereum"></i>   ETH   Block <a href="/eth/block?number=<%= inputField %>">/eth/block/<%= inputField %></a>
+		</div>
+	</section>

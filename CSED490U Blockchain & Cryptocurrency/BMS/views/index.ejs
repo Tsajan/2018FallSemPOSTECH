@@ -153,20 +153,22 @@
 						<thead>
 							<tr>
 								<th scope="col">Height</th>
-								<th scope="col">Age</th>
+								<th scope="col">Timestamp</th>
 								<th scope="col">Transactions</th>
 								<th scope="col">Miner</th>
-								<th scope="col">Size (KB)</th>
+								<th scope="col">Size (Kb)</th>
 							</tr>
 						</thead>
 						<tbody>
+							<% for(var i=0; i < 5; i++) { %>
 							<tr>
-								<td><a href="#">625435</a></td>
-								<td>Few Seconds Ago</td>
-								<td>123</a></td>
-								<td><a href="#">0xMinerID</a></td>
-								<td>1234567</td>
+								<td><a href="#"><%= btcBlock[i].height %></a></td>
+								<td><%= btcBlock[i].tstamp %></td>
+								<td><a href="#"><%= btcBlock[i].txnnum %></a></td>
+								<td><a href="#"><%= btcBlock[i].miner %></a></td>
+								<td><%= btcBlock[i].size %></td>
 							</tr>
+							<% } %>
 						</tbody>
 					</table>
 				</div>
@@ -176,16 +178,18 @@
 						<thead>
 							<tr>
 								<th scope="col">Transaction Hash</th>
-								<th scope="col">Age</th>
 								<th scope="col">Amount (BTC)</th>
+								<th scope="col">Size</th>
 							</tr>
 						</thead>
 						<tbody>
+							<% for(var i=0; i < 5; i++) { %>
 							<tr>
-								<td><a href="#">0xSomeTransactionHash</td>
-								<td>Few Seconds Ago</td>
-								<td>5 BTC</td>
+								<td><a href="#"><%= btcTxn[i].txnhash %></td>
+								<td><%= btcTxn[i].txnamt %></td>
+								<td><%= btcTxn[i].size %></td>
 							</tr>
+							<% } %>
 						</tbody>
 					</table>
 				</div>
@@ -255,12 +259,12 @@
 							</tr>
 						</thead>
 						<tbody>
-							<% for(var i=0; i < 3; i++) { %>
+							<% for(var i=0; i < 5; i++) { %>
 							<tr>
 								<td><a href="#"><%= ethBlock[i].blocknumber %></a></td>
 								<td><%= ethBlock[i].ts %></td>
 								<td><%= ethBlock[i].tnum %></a></td>
-								<td><a href="#">0x<%= ethBlock[i].miner %></a></td>
+								<td><a href="#"><%= ethBlock[i].miner %></a></td>
 								<td><%= ethBlock[i].size %></td>
 							</tr>
 							<% } %>
@@ -278,9 +282,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<% for(var i=0; i < 3; i++) { %>
+							<% for(var i=0; i < 5; i++) { %>
 							<tr>
-								<td><a href="#">0x<%= ethTransaction[i].txnhash %></td>
+								<td><a href="#"><%= ethTransaction[i].txnhash %></td>
 								<td><%= ethTransaction[i].age %></td>
 								<td><%= ethTransaction[i].ethValue %></td>
 							</tr>

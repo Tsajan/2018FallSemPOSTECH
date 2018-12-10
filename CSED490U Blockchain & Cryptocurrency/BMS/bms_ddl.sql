@@ -1,32 +1,68 @@
-create table ethTransaction (
+create table btcblock (
 	hash char(64) not null primary key,
+	confirmations integer unsigned,
+	strippedsize integer unsigned,
+	size integer unsigned,
+	weight integer unsigned,
+	height integer unsigned not null,
+	version integer,
+	versionHex char(8),
+	merkleroot char(64) not null,
+	tx json,
+	ts timestamp not null,
+	mediantime timestamp,
+	nonce integer unsigned not null,
+	bits char(8),
+	difficulty double unsigned,
+	chainwork char(64),
+	ntx integer unsigned,
+	previousblockhash char(64),
+	nextblockhash char(64)
+);
+
+create table btctransaction (
+	txid char(64) not null primary key,
+	hash char(64) not null,
+	version integer,
+	size integer,
+	vsize integer,
+	weight integer,
+	locktime integer,
+	vin json,
+	vout json
+);
+
+create table ethTransaction (
+	hash char(66) not null primary key,
 	nonce integer not null,
-	blockHash varchar(64) not null,
+	blockHash varchar(66) not null,
 	blockNumber integer unsigned not null,
 	transactionIndex integer unsigned not null,
-	fromAddr char(40) not null,
-	toAddr char(40) not null,
+	fromAddr char(42) not null,
+	toAddr char(42) not null,
 	ethValue varchar(64) not null,
 	gasPrice varchar(64) not null,
 	gas integer unsigned not null,
-	input varchar(512)
+	input varchar(514)
 );
 
 select blocknumber, ts, 12, miner, size from ethBlock order by blockNumber desc limit 3;
 
 create table ethBlock (
 	blocknumber integer unsigned not null,
-	hash char(64) not null primary key,
-	parentHash char(64) not null,
-	nonce varchar(16) not null,
-	sha3Uncles varchar(64),
-	logsBloom varchar(512),
-	transactionsRoot varchar(64),
-	stateRoot varchar(64),
-	miner varchar(40) not null,
+	hash char(66) not null primary key,
+	parentHash char(66) not null,
+	nonce varchar(18) not null,
+	sha3Uncles varchar(66),
+	logsBloom varchar(514),
+	transactionsRoot varchar(66),
+	receiptsRoot varchar(66),
+	mixHash varchar(66),
+	stateRoot varchar(66),
+	miner varchar(42) not null,
 	difficulty varchar(64) not null,
 	totalDifficulty varchar(64) not null,
-	extraData varchar(256),
+	extraData varchar(128),
 	size integer not null,
 	gasLimit integer not null,
 	gasUsed integer not null,
