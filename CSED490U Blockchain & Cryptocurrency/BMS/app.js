@@ -224,6 +224,7 @@ app.post('/search', function(req, res) {
 					console.log("Matching Record found in btcTransaction table");
 					var nextsql = `select
     								hash as txnhash,
+    								txid as txnid,
     								json_extract(vin, "$[*].txid") as fromTxIDs,
     								json_extract(vin, "$[*].vout") as fromTxPos,
     								json_extract(vout, "$[*].scriptPubKey.addresses[0]") as toaddresses,
