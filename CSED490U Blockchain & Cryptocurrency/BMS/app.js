@@ -46,7 +46,7 @@ app.get('/bms', function (req, res) {
 
 		var btc_txn_sql = `select 
     							hash as txnhash,
-    							round((json_extract(vout, "$[0].value") + ifnull(json_extract(vout, "$[1].value"),0) + ifnull(json_extract(vout, "$[2].value"),0) + ifnull(json_extract(vout, "$[3].value"),0) + ifnull(json_extract(vout, "$[4].value"),0)),6) as txnamt,
+    							sum_json_array(json_extract(vout, "$[*].value")) as txnamt,
     							size as size
 							from btctransaction
 							order by txnhash desc limit 5;`
@@ -101,9 +101,15 @@ app.post('/search', function(req, res) {
 	var btcblockinfo;
 	var ethtxninfo;
 	var btctxninfo;
-	
 	var ethblockinfobyheight;
 	var btcblockinfobyheight;
+
+	//arrays to be used while rendering data in ejs
+	var btcTxnSenderAddrArr = [];
+	var btcTxnSenderAmtArr = [];
+	var btcTxnOutputValArr = [];
+	var btcTxnOutputAddrArr = [];
+	var inputSum = 0.0;
 
 	console.log("Search started");
 	var ethhashflg = 0;
@@ -181,13 +187,13 @@ app.post('/search', function(req, res) {
   	if(btchashflg) {
   		var sql = `select count(*) as cnt from btcblock where hash = ?
 					union all
-					select count(*) from btctransaction where hash = ? limit 1;`;
+					select count(*) from btctransaction where txid = ?;`;
 		connection.query(sql, [inputField, inputField], function(err, result, fields) {
 			if(err) throw err;
 			console.log(result);
 			//if there is a match from bitcoin block table, fetch data from bitcoin block table
 			if(result[0].cnt) {
-				console.log("Matching Record Found");
+				console.log("Matching Record Found in btcBlock table");
 				var nextsql = `select
     								hash,
     								height,
@@ -212,9 +218,84 @@ app.post('/search', function(req, res) {
 				})
 			}
 			// else if there is a match from bitcoin transaction table, fetch data from bitcoin txn table
-			// to be done
+			else if(result[1].cnt) {
+				connection.beginTransaction( function(err) {
+
+					console.log("Matching Record found in btcTransaction table");
+					var nextsql = `select
+    								hash as txnhash,
+    								json_extract(vin, "$[*].txid") as fromTxIDs,
+    								json_extract(vin, "$[*].vout") as fromTxPos,
+    								json_extract(vout, "$[*].scriptPubKey.addresses[0]") as toaddresses,
+    								json_extract(vout, "$[*].value") as toval,
+    								sum_json_array(json_extract(vout, "$[*].value")) as totalout,
+    								size,
+    								vsize,
+    								locktime,
+    								weight,
+    								json_extract(vout, "$[*].scriptPubKey.asm") as outputscriptsig,
+    								json_extract(vin, "$[*].scriptSig") as inputscriptsig
+							from btctransaction where txid = ? limit 1;`;
+					connection.query(nextsql, [inputField], function(err, out, fields) {
+						if(err) throw err;
+						btctxninfo = out;
+					
+						//get the string for sender transaction ids and transaction output positions
+						btctxninputs = out[0].fromTxIDs;
+						btctxnpos = out[0].fromTxPos;
+
+						//remove double quotes and brackets from btctxninputs and btctxnpos
+						btctxninputs = btctxninputs.replace(/"/g, "").replace("[", "").replace("]", "");
+						btctxnpos = btctxnpos.replace(/"/g, "").replace("[", "").replace("]", "");
+
+						btctxninputsArr = btctxninputs.split(", ");
+						btctxnposArr = btctxnpos.split(", ");
+					
+						console.log("Transaction Details");
+						console.log(btctxninfo);
+
+						for(var i=0; i < btctxninputsArr.length; i++) {
+							var anothersql = `select 
+    										json_extract(vout, "$[?].scriptPubKey.addresses[0]") as sender,
+    										json_extract(vout, "$[?].value") as senderval
+										from btcTransaction where txid=?`;
+							connection.query(anothersql, [parseInt(btctxnposArr[i]), parseInt(btctxnposArr[i]), btctxninputsArr[i]], function(err, out, fields) {
+								if(err) throw err;
+								btcTxnSenderAddrArr.push(out[0].sender);
+								btcTxnSenderAmtArr.push(out[0].senderval);
+							});
+						}
+
+						//get the string of to addresses and to values
+						btctxnoutputaddr = out[0].toaddresses;
+						btctxnoutputaddr = btctxnoutputaddr.replace(/"/g,"").replace("[","").replace("]","");
+						btcTxnOutputAddrArr = btctxnoutputaddr.split(", ");
+
+						btctxnoutputval = out[0].toval;
+						btctxnoutputval = btctxnoutputval.replace(/"/g,"").replace("[","").replace("]","");
+						btcTxnOutputValArr = btctxnoutputval.split(", ");
+
+						connection.commit(function(err, info) {
+
+							//remove double quotes from sender addresses
+							for(var i=0; i < btcTxnSenderAddrArr.length; i++) {
+								btcTxnSenderAddrArr[i] = btcTxnSenderAddrArr[i].replace(/"/g,"");
+								inputSum += parseFloat(btcTxnSenderAmtArr[i]);
+							}
+
+							console.log(btcTxnSenderAmtArr);
+							console.log(btcTxnSenderAddrArr);
+
+							res.render('btctxn', { btctxninfo: btctxninfo, btcTxnSenderAddrArr: btcTxnSenderAddrArr, btcTxnSenderAmtArr: btcTxnSenderAmtArr, btcTxnOutputAddrArr: btcTxnOutputAddrArr, btcTxnOutputValArr: btcTxnOutputValArr, inputSum: inputSum });
+						})
+
+
+					});
+				});
+			}
 		})
   	}
+
   	
   	//this is the search based on block numbers for both ethereum and bitcoin
   	if(!ethhashflg && !btchashflg) {
