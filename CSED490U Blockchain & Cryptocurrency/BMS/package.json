@@ -105,7 +105,7 @@
       "resolved": "https://registry.npmjs.org/expres/-/expres-0.0.5.tgz",
       "version": "0.0.5"
     },
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "finalhandler": {
       "integrity": "sha512-Y1GUDo39ez4aHAw7MysnUD5JzYX+WaIj8I57kO3aEPT1fFRL4sr7mjei97FgnwhAyyzRYmQZaTHb2+9uZ1dPtg==",
       "requires": {
